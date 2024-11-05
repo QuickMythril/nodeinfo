@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Q-App Node and Peer Status</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Settings Button -->
+    <button id="settingsButton">⚙️</button>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal">&times;</span>
+            <h2>Settings</h2>
+            <label for="refreshRate">Refresh Rate (seconds): <span id="refreshValue">30</span></label>
+            <input type="range" id="refreshRate" min="5" max="60" step="5" value="30">
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Qortal Node Status</h1>
+        <div class="node-info">
+            <div><strong>Build Version:</strong> <span id="buildVersion"></span></div>
+            <div><strong>Uptime:</strong> <span id="uptime"></span></div>
+            <div><strong>Block Height:</strong> <span id="blockHeight"></span></div>
+            <div><strong>Number of Connections:</strong> <span id="connections"></span></div>
+            <div><strong>Sync Percentage:</strong> <span id="syncPercent"></span></div>
+            <div><strong>Minting Status:</strong> <span id="mintingStatus"></span></div>
+
+            <!-- Minting Accounts Section -->
+            <div id="mintingAccountsSection">
+                <h3>Minting Accounts</h3>
+                <div id="mintingAccounts">
+                    <!-- Minting accounts will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <h2>Connected Peers</h2>
+        <div class="peer-counts">
+            <div><strong>Total Incoming:</strong> <span id="incomingCount"></span></div>
+            <div><strong>Total Outgoing:</strong> <span id="outgoingCount"></span></div>
+        </div>
+
+        <h3>Incoming Peers</h3>
+        <table id="incomingPeers" class="peer-table">
+            <thead>
+                <tr>
+                    <th data-sort="address">Address</th>
+                    <th data-sort="handshakeStatus">Handshake Status</th>
+                    <th data-sort="connectedFor">Connected For</th>
+                    <th data-sort="version">Build Version</th>
+                    <th data-sort="lastHeight">Last Height</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Incoming peers will be populated here -->
+            </tbody>
+        </table>
+
+        <h3>Outgoing Peers</h3>
+        <table id="outgoingPeers" class="peer-table">
+            <thead>
+                <tr>
+                    <th data-sort="address">Address</th>
+                    <th data-sort="handshakeStatus">Handshake Status</th>
+                    <th data-sort="connectedFor">Connected For</th>
+                    <th data-sort="version">Build Version</th>
+                    <th data-sort="lastHeight">Last Height</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Outgoing peers will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
