@@ -24,17 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const restartButton = document.getElementById('restartButton');
     const bootstrapButton = document.getElementById('bootstrapButton');
 
-    // API Key Modal Elements
-    const apiKeyModal = document.getElementById('apiKeyModal');
-    const closeApiKeyModal = document.getElementById('closeApiKeyModal');
-    const enterApiKeyButton = document.getElementById('enterApiKeyButton');
-    const selectApiKeyFileButton = document.getElementById('selectApiKeyFileButton');
-    const cancelApiKeyButton = document.getElementById('cancelApiKeyButton');
-    const manualApiKeyEntry = document.getElementById('manualApiKeyEntry');
-    const manualApiKeyInput = document.getElementById('manualApiKeyInput');
-    const submitManualApiKeyButton = document.getElementById('submitManualApiKeyButton');
-    const apiKeyFileInput = document.getElementById('apiKeyFileInput');
-
     // Event Listeners for Control Buttons
     stopButton.addEventListener('click', () => handleAdminAction('stop'));
     restartButton.addEventListener('click', () => handleAdminAction('restart'));
@@ -279,116 +268,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function handleAdminAction(action) {
-        let apiKey = null;
         try {
-            const response = await qortalRequest({ action: "GET_API_KEY" });
-            apiKey = response.apiKey;
+            const response = await qortalRequest({ action: "ADMIN_ACTION", type: action });
+            alert(`Successfully executed ${action} action.`);
         } catch (error) {
-            console.error('Automatic API key retrieval failed:', error);
+            console.error(`Error executing ${action} action:`, error);
+            alert(`Error executing ${action} action: ${error.message || error}`);
         }
-
-        if (!apiKey) {
-            // Prompt the user with options
-            showApiKeyPrompt(action);
-        } else {
-            // Proceed with the action
-            performAdminAction(action, apiKey);
-        }
-    }
-
-    function showApiKeyPrompt(action) {
-        apiKeyModal.style.display = 'block';
-
-        // Hide manual entry by default
-        manualApiKeyEntry.style.display = 'none';
-
-        // Handle close button
-        closeApiKeyModal.onclick = function() {
-            apiKeyModal.style.display = 'none';
-        };
-
-        // Handle Cancel button
-        cancelApiKeyButton.onclick = function() {
-            apiKeyModal.style.display = 'none';
-        };
-
-        // Handle Enter API Key Manually
-        enterApiKeyButton.onclick = function() {
-            // Show manual API key entry
-            manualApiKeyEntry.style.display = 'block';
-        };
-
-        // Handle Submit Manual API Key
-        submitManualApiKeyButton.onclick = function() {
-            const apiKey = manualApiKeyInput.value.trim();
-            if (apiKey) {
-                apiKeyModal.style.display = 'none';
-                performAdminAction(action, apiKey);
-            } else {
-                alert('Please enter a valid API Key.');
-            }
-        };
-
-        // Handle Select apikey.txt File
-        selectApiKeyFileButton.onclick = function() {
-            apiKeyFileInput.click();
-        };
-
-        // Handle file selection
-        apiKeyFileInput.onchange = function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const apiKey = e.target.result.trim();
-                    if (apiKey) {
-                        apiKeyModal.style.display = 'none';
-                        performAdminAction(action, apiKey);
-                    } else {
-                        alert('Invalid API Key in file.');
-                    }
-                };
-                reader.readAsText(file);
-            }
-        };
-    }
-
-    function performAdminAction(action, apiKey) {
-        let url = '';
-        if (action === 'stop') {
-            url = `/admin/stop?apiKey=${encodeURIComponent(apiKey)}`;
-        } else if (action === 'restart') {
-            url = `/admin/restart?apiKey=${encodeURIComponent(apiKey)}`;
-        } else if (action === 'bootstrap') {
-            url = `/admin/bootstrap?apiKey=${encodeURIComponent(apiKey)}`;
-        } else {
-            console.error('Unknown action:', action);
-            return;
-        }
-
-        fetch(url)
-            .then(response => {
-                if (response.ok) {
-                    alert(`Successfully executed ${action} action.`);
-                } else {
-                    response.text().then(text => {
-                        alert(`Error executing ${action} action: ${text}`);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error(`Error executing ${action} action:`, error);
-                alert(`Error executing ${action} action: ${error}`);
-            });
     }
 
     // Handle clicking outside the modals
     window.addEventListener('click', (event) => {
         if (event.target == settingsModal) {
             settingsModal.style.display = 'none';
-        }
-        if (event.target == apiKeyModal) {
-            apiKeyModal.style.display = 'none';
         }
     });
 
