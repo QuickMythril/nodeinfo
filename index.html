@@ -22,6 +22,14 @@
 
     <div class="container">
         <h1>Qortal Node Status</h1>
+
+        <!-- Control Buttons -->
+        <div class="control-buttons">
+            <button id="stopButton">Stop</button>
+            <button id="restartButton">Restart</button>
+            <button id="bootstrapButton">Bootstrap</button>
+        </div>
+
         <div class="node-info">
             <div><strong>Build Version:</strong> <span id="buildVersion"></span></div>
             <div><strong>Uptime:</strong> <span id="uptime"></span></div>
@@ -76,6 +84,26 @@
                 <!-- Outgoing peers will be populated here -->
             </tbody>
         </table>
+    </div>
+
+    <!-- API Key Prompt Modal -->
+    <div id="apiKeyModal" class="modal">
+        <div class="modal-content">
+            <span id="closeApiKeyModal">&times;</span>
+            <h2>API Key Required</h2>
+            <p>The API Key is required to perform this action. Please choose an option:</p>
+            <button id="enterApiKeyButton">Enter API Key Manually</button>
+            <button id="selectApiKeyFileButton">Select apikey.txt File</button>
+            <button id="cancelApiKeyButton">Cancel</button>
+
+            <!-- Hidden inputs for manual entry and file selection -->
+            <div id="manualApiKeyEntry" style="display: none;">
+                <input type="text" id="manualApiKeyInput" placeholder="Enter API Key">
+                <button id="submitManualApiKeyButton">Submit</button>
+            </div>
+
+            <input type="file" id="apiKeyFileInput" accept=".txt" style="display: none;">
+        </div>
     </div>
 
     <script src="app.js"></script>
