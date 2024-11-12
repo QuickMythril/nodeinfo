@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const nodeIpElement = document.getElementById("nodeIp");
+    // Display the current node IP address
+    if (nodeIpElement) {
+        nodeIpElement.textContent = window.location.host;
+    }
     const buildVersionEl = document.getElementById('buildVersion');
     const uptimeEl = document.getElementById('uptime');
     const blockHeightEl = document.getElementById('blockHeight');

@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Q-App Node and Peer Status</title>
+    <title>NodeInfo v1.0.0</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <!-- Settings Button -->
-    <button id="settingsButton">⚙️</button>
+    <span id="appVersion">NodeInfo v1.0.0</span><button id="settingsButton">⚙️</button>
 
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
@@ -22,6 +22,7 @@
 
     <div class="container">
         <h1>Qortal Node Status</h1>
+        <div><strong>Current Node IP:</strong> <span id="nodeIp"></span></div>
 
         <!-- Control Buttons -->
         <div class="control-buttons">
