@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NodeInfo v1.0.0</title>
+    <title>NodeInfo v1.1.0</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <!-- Settings Button -->
-    <span id="appVersion">NodeInfo v1.0.0</span><button id="settingsButton">⚙️</button>
+    <span id="appVersion">NodeInfo v1.1.0</span><button id="settingsButton">⚙️</button>
 
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
@@ -41,14 +41,15 @@
 
             <!-- Minting Accounts Section -->
             <div id="mintingAccountsSection">
-                <h3>Minting Accounts</h3>
+                <h3>Minting Accounts <button id="addMintingAccountButton" class="add-button">+</button></h3>
                 <div id="mintingAccounts">
                     <!-- Minting accounts will be populated here -->
                 </div>
             </div>
         </div>
 
-        <h2>Connected Peers</h2>
+        <!-- Connected Peers Section -->
+        <h2>Connected Peers <button id="addPeerButton" class="add-button">+</button></h2>
         <div class="peer-counts">
             <div><strong>Total Incoming:</strong> <span id="incomingCount"></span></div>
             <div><strong>Total Outgoing:</strong> <span id="outgoingCount"></span></div>
@@ -104,6 +105,26 @@
             </div>
 
             <input type="file" id="apiKeyFileInput" accept=".txt" style="display: none;">
+        </div>
+    </div>
+
+    <!-- Add Peer Modal -->
+    <div id="addPeerModal" class="modal">
+        <div class="modal-content">
+            <span id="closeAddPeerModal" class="close">&times;</span>
+            <h2>Add New Peer</h2>
+            <input type="text" id="newPeerInput" placeholder="Enter Peer Address">
+            <button id="submitNewPeerButton">Add Peer</button>
+        </div>
+    </div>
+
+    <!-- Add Minting Account Modal -->
+    <div id="addMintingAccountModal" class="modal">
+        <div class="modal-content">
+            <span id="closeAddMintingAccountModal" class="close">&times;</span>
+            <h2>Add New Minting Account</h2>
+            <input type="text" id="newMintingAccountInput" placeholder="Enter Minting Account Address">
+            <button id="submitNewMintingAccountButton">Add Minting Account</button>
         </div>
     </div>
 

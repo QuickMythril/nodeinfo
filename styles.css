@@ -6,6 +6,52 @@ body {
     padding: 0;
 }
 
+/* Add Button Styles */
+.add-button {
+    background-color: dodgerblue;
+    color: #1f1f1f;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.add-button:hover {
+    background-color: #1f1f1f;
+    color: dodgerblue;
+    border: 1px solid dodgerblue;
+}
+
+/* Remove Button Styles */
+.remove-button {
+    background-color: transparent;
+    color: darkred;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.remove-button:hover {
+    color: red;
+}
+
+/* Force Sync Button Styles */
+.force-sync-button {
+    background-color: transparent;
+    color: dodgerblue;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.force-sync-button:hover {
+    color: lightblue;
+}
+
 .container {
     padding: 20px;
     margin-top: 50px; /* Adjust for settings button */
@@ -135,6 +181,10 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.minting-account button {
+    margin-right: 10px;
 }
 
 .minting-account img {
